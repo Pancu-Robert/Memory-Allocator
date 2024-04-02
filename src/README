@@ -1,0 +1,19 @@
+// Pancu Robert-George 334
+
+    For the implementation i followed the links in the bottom of the
+    README and some function such as request_space() or find_best_block() i've
+    got inspired from there.
+
+    I used a global pointer which is the head of the list of allocated blocks.
+
+    For malloc implementation i reused free blocks if it was possible and
+    allocate new blocks when don't have enough space.
+    Calloc is basically a malloc with memset in case the size doesn't exceed
+    the page_size, in this case the memory is allocated with mmap.
+    
+    For realloc there are 3 cases:
+    - truncate the block
+    - expand the current block if possible
+    - alloc the block to another block and copy the data.
+
+    METADATA_SIZE and MMAP_THRESHOLD MACRO i put them in the header helpers.h
